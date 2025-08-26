@@ -1,8 +1,10 @@
 export { Button } from './button/Button.js';
 export { Toggle } from './toggle/Toggle.js';
 export { AccessibilityControls } from './accessibility/AccessibilityControls.js';
+export { CorporateFooter } from './footer/CorporateFooter.js';
 export { ThemeProvider, useTheme } from './theme/ThemeContext.js';
 export type { Theme } from './theme/types.js';
 export type { ButtonProps, ButtonVariant, ButtonSize, ButtonShape } from './button/Button.js';
 export type { ToggleSize } from './toggle/Toggle.js';
 export type { AccessibilitySettings } from './accessibility/AccessibilityPanel.js';
+export type { FooterConfig, FooterVariant, CompanyInfo, ComplianceInfo } from './footer/types.js';
