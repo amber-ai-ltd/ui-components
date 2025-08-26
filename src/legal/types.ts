@@ -16,12 +16,19 @@ export interface DocumentMetadata {
   documentType: DocumentType;
 }
 
+export interface Section {
+  id: string;
+  title: string;
+  level: number;
+}
+
 export interface LegalDocumentProps {
   metadata: DocumentMetadata;
   companyInfo: CompanyInfo;
   showTableOfContents?: boolean;
   showPrintVersion?: boolean;
   customSections?: Record<string, string>;
+  sections?: Section[];
 }
 
 export type DocumentType = 

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { DocumentHeader } from './DocumentHeader.js';
 import { TableOfContents } from './TableOfContents.js';
 import { DOCUMENT_CLASSES } from './constants.js';
-import type { LegalDocumentProps } from './types.js';
+import type { LegalDocumentProps, Section } from './types.js';
 
 interface LegalDocumentComponentProps extends LegalDocumentProps {
   children: ReactNode;
@@ -12,6 +12,7 @@ export const LegalDocument: React.FC<LegalDocumentComponentProps> = ({
   metadata,
   companyInfo,
   showTableOfContents = false,
+  sections: explicitSections,
   children,
 }) => {
   const extractSections = (content: ReactNode) => {
@@ -36,7 +37,9 @@ export const LegalDocument: React.FC<LegalDocumentComponentProps> = ({
     return sections;
   };
 
-  const sections = showTableOfContents ? extractSections(children) : [];
+  const sections = showTableOfContents 
+    ? (explicitSections || extractSections(children))
+    : [];
 
   return (
     <article className={DOCUMENT_CLASSES.CONTAINER}>
