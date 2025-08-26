@@ -55,7 +55,7 @@ export const ComplianceSection: React.FC<ComplianceSectionProps> = ({ compliance
         <div className="compliance-group">
           <h4 className="compliance-subtitle">Security</h4>
           <div className="security-badges">
-            {compliance.securityBadges.map((badge, index) => (
+            {compliance.securityBadges!.map((badge, index) => (
               <SecurityBadge key={index} {...badge} />
             ))}
           </div>
