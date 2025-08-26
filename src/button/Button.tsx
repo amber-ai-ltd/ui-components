@@ -1,6 +1,6 @@
 import { forwardRef, type ButtonHTMLAttributes, type AnchorHTMLAttributes, type ReactNode } from 'react';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'floating';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 type BaseButtonProps = {
@@ -24,11 +24,12 @@ type ButtonAsLink = BaseButtonProps & AnchorHTMLAttributes<HTMLAnchorElement> & 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const buttonVariants: Record<ButtonVariant, string> = {
-  primary: 'btn-primary',
-  secondary: 'btn-secondary',
-  outline: 'bg-transparent hover:bg-surface-elevated text-brand border-brand hover:border-brand-hover',
-  ghost: 'bg-transparent hover:bg-surface text-primary border-transparent',
-  destructive: 'bg-red-600 hover:bg-red-700 text-white border-transparent'
+  primary: 'bg-primary-600 hover:bg-primary-700 text-white border-primary-600',
+  secondary: 'bg-secondary-600 hover:bg-secondary-700 text-white border-secondary-600',
+  outline: 'bg-transparent hover:bg-primary-50 dark:hover:bg-primary-900 text-primary-600 border-primary-600',
+  ghost: 'bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 border-transparent',
+  destructive: 'bg-red-600 hover:bg-red-700 text-white border-red-600',
+  floating: 'fixed bg-blue-600 hover:bg-blue-700 text-white border-blue-600 rounded-full shadow-lg z-50 w-12 h-12 !p-0'
 };
 
 const buttonSizes: Record<ButtonSize, string> = {

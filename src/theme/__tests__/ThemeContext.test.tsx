@@ -1,30 +1,47 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeProvider, useTheme } from '../ThemeContext';
+import { Toggle } from '../../toggle/Toggle';
 
 function TestToggle() {
   const { theme, toggleTheme } = useTheme();
   return (
-    <button onClick={toggleTheme}>
-      {theme}
-    </button>
+    <Toggle 
+      checked={theme === 'dark'} 
+      onChange={() => toggleTheme()}
+      aria-label={`Current theme: ${theme}`}
+    />
   );
 }
 
-describe('theme switching', () => {
-  it('toggles between themes', () => {
+function TestThemeUser() {
+  const { theme } = useTheme();
+  return <div data-testid="theme">{theme}</div>;
+}
+
+describe('Theme', () => {
+  it('toggles', () => {
     render(
       <ThemeProvider>
         <TestToggle />
       </ThemeProvider>
     );
     
-    const button = screen.getByRole('button');
-    expect(button).toHaveTextContent('light');
+    const toggle = screen.getByRole('switch');
+    const initialChecked = toggle.getAttribute('aria-checked');
     
-    fireEvent.click(button);
-    expect(button).toHaveTextContent('dark');
+    fireEvent.click(toggle);
+    expect(toggle.getAttribute('aria-checked')).not.toBe(initialChecked);
     
-    fireEvent.click(button);
-    expect(button).toHaveTextContent('light');
+    fireEvent.click(toggle);
+    expect(toggle.getAttribute('aria-checked')).toBe(initialChecked);
+  });
+
+  it('throws without provider', () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    
+    expect(() => render(<TestThemeUser />))
+      .toThrow('useTheme must be used within ThemeProvider');
+    
+    spy.mockRestore();
   });
 });

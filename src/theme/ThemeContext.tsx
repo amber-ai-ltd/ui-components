@@ -15,13 +15,15 @@ interface ThemeProviderProps {
 function getStoredTheme(): Theme | null {
   try {
     const stored = localStorage.getItem('theme');
-    return stored === 'dark' || stored === 'light' ? stored : null;
-  } catch {
+    return stored === 'light' || stored === 'dark' ? stored : null;
+  } catch (error) {
+    console.warn('Theme preference could not be retrieved:', error);
     return null;
   }
 }
 
 function getSystemTheme(): Theme {
+  if (typeof window === 'undefined') return 'light';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
