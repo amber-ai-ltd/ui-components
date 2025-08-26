@@ -1,6 +1,7 @@
 import React from 'react';
 import { SecurityBadge } from './SecurityBadge.js';
-import { BADGE_TYPES } from './constants.js';
+import { ComplianceStandard } from './ComplianceStandard.js';
+import { DataProtectionBadge } from './DataProtectionBadge.js';
 import type { ComplianceInfo } from './types.js';
 
 interface ComplianceSectionProps {
@@ -22,11 +23,13 @@ export const ComplianceSection: React.FC<ComplianceSectionProps> = ({ compliance
         <div className="compliance-group">
           <h4 className="compliance-subtitle">Standards</h4>
           <div className="compliance-standards">
-            {compliance.standards.map((standard, index) => (
-              <span key={index} className="compliance-standard">
-                {standard}
-              </span>
-            ))}
+            {compliance.standards.map((standard, index) => {
+              const name = typeof standard === 'string' ? standard : standard.name;
+              const href = typeof standard === 'string' ? undefined : standard.href;
+              return (
+                <ComplianceStandard key={index} name={name} href={href} />
+              );
+            })}
           </div>
         </div>
       )}
@@ -35,18 +38,10 @@ export const ComplianceSection: React.FC<ComplianceSectionProps> = ({ compliance
         <div className="compliance-group">
           <h4 className="compliance-subtitle">Data Protection</h4>
           <div className="compliance-badges">
-            {hasDataProtection.gdpr && (
-              <span className="compliance-badge compliance-badge--gdpr">GDPR Compliant</span>
-            )}
-            {hasDataProtection.ccpa && (
-              <span className="compliance-badge compliance-badge--ccpa">CCPA Compliant</span>
-            )}
-            {hasDataProtection.soc2 && (
-              <span className="compliance-badge compliance-badge--soc2">SOC 2 Type II</span>
-            )}
-            {hasDataProtection.iso27001 && (
-              <span className="compliance-badge compliance-badge--iso27001">ISO 27001</span>
-            )}
+            <DataProtectionBadge type="gdpr" enabled={hasDataProtection.gdpr} />
+            <DataProtectionBadge type="ccpa" enabled={hasDataProtection.ccpa} />
+            <DataProtectionBadge type="soc2" enabled={hasDataProtection.soc2} />
+            <DataProtectionBadge type="iso27001" enabled={hasDataProtection.iso27001} />
           </div>
         </div>
       )}

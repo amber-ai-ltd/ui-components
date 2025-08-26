@@ -39,14 +39,19 @@ export interface SocialLink {
   ariaLabel: string;
 }
 
+export interface ComplianceStandard {
+  name: string;
+  href?: string;
+}
+
 export interface ComplianceInfo {
-  standards: string[];
+  standards: (string | ComplianceStandard)[];
   certifications: Certification[];
   dataProtection?: {
-    gdpr?: boolean;
-    ccpa?: boolean;
-    soc2?: boolean;
-    iso27001?: boolean;
+    gdpr?: boolean | { href?: string };
+    ccpa?: boolean | { href?: string };
+    soc2?: boolean | { href?: string };
+    iso27001?: boolean | { href?: string };
   };
   securityBadges?: Array<{
     name: string;
