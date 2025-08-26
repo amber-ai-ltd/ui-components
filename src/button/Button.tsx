@@ -25,7 +25,7 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const FLOATING_BUTTON_STYLES = {
   base: 'fixed rounded-full shadow-lg z-50 w-12 h-12 !p-0 transition-colors focus:ring-4',
-  colors: 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600 focus:ring-blue-300'
+  colors: 'bg-primary-600 hover:bg-primary-700 text-white border-primary-600 focus:ring-primary-300'
 };
 
 const buttonVariants: Record<ButtonVariant, string> = {

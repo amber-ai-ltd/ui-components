@@ -9,8 +9,8 @@ interface ToggleProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onC
 }
 
 const TOGGLE_STYLES = {
-  base: 'relative inline-flex items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
-  active: 'bg-blue-600',
+  base: 'relative inline-flex items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+  active: 'bg-primary-600',
   inactive: 'bg-gray-200 dark:bg-gray-600',
   thumb: 'inline-block transform rounded-full bg-white transition-transform',
   thumbInactive: 'translate-x-0.5'
