@@ -2,7 +2,7 @@ import React from 'react';
 
 interface DataProtectionBadgeProps {
   type: 'gdpr' | 'ccpa' | 'soc2' | 'iso27001';
-  enabled: boolean | { href?: string };
+  enabled?: boolean | { href?: string };
 }
 
 const BADGE_CONFIG = {
