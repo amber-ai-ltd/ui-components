@@ -28,12 +28,32 @@ interface AccessibilityPanelProps {
 
 const DEFAULT_LABELS = {
   title: 'Accessibility Settings',
-  close: 'Close',
-  reset: 'Reset',
+  close: 'Close accessibility settings',
+  reset: 'Reset to Defaults',
   reduceMotion: 'Reduce Motion',
   highContrast: 'High Contrast',
   largeText: 'Large Text',
   textSpacing: 'Text Spacing',
+};
+
+const SETTING_DESCRIPTIONS = {
+  reduceMotion: 'Minimize animations and transitions',
+  highContrast: 'Increase color contrast for better visibility',
+  largeText: 'Increase text size for better readability',
+  textSpacing: 'Increase line height and letter spacing',
+};
+
+const PANEL_STYLES = {
+  base: 'fixed z-40 w-80 max-w-[calc(100vw-2rem)] rounded-lg shadow-xl p-6',
+  colors: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600',
+  overlay: 'fixed inset-0 z-30 bg-black bg-opacity-25',
+  header: 'flex items-center justify-between mb-4',
+  title: 'text-lg font-semibold text-gray-900 dark:text-gray-100',
+  content: 'space-y-4',
+  settingRow: 'flex items-center justify-between',
+  label: 'text-sm font-medium text-gray-700 dark:text-gray-300',
+  description: 'text-xs text-gray-500 dark:text-gray-400 mt-1',
+  footer: 'mt-6 pt-4 border-t border-gray-200 dark:border-gray-600'
 };
 
 export function AccessibilityPanel({
@@ -61,12 +81,12 @@ export function AccessibilityPanel({
   return (
     <>
       <div
-        className={`fixed ${panelClasses[position]} z-40 w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl p-6`}
+        className={`${PANEL_STYLES.base} ${PANEL_STYLES.colors} ${panelClasses[position]}`}
         role="dialog"
         aria-labelledby="accessibility-title"
       >
-        <div className="flex items-center justify-between mb-4">
-          <h2 id="accessibility-title" className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <div className={PANEL_STYLES.header}>
+          <h2 id="accessibility-title" className={PANEL_STYLES.title}>
             {finalLabels.title}
           </h2>
           <Button
@@ -80,11 +100,14 @@ export function AccessibilityPanel({
           </Button>
         </div>
 
-        <div className="space-y-4">
+        <div className={PANEL_STYLES.content}>
           {settingItems.map(({ key, label }) => (
-            <div key={key} className="flex items-center justify-between">
-              <label htmlFor={key} className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <div key={key} className={PANEL_STYLES.settingRow}>
+              <label htmlFor={key} className={PANEL_STYLES.label}>
                 {label}
+                <div className={PANEL_STYLES.description}>
+                  {SETTING_DESCRIPTIONS[key]}
+                </div>
               </label>
               <Toggle
                 id={key}
@@ -96,7 +119,7 @@ export function AccessibilityPanel({
           ))}
         </div>
 
-        <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
+        <div className={PANEL_STYLES.footer}>
           <Button onClick={onReset} variant="outline" size="sm" fullWidth>
             {finalLabels.reset}
           </Button>
@@ -104,7 +127,7 @@ export function AccessibilityPanel({
       </div>
 
       <div
-        className="fixed inset-0 z-30 bg-black bg-opacity-25"
+        className={PANEL_STYLES.overlay}
         onClick={onClose}
         aria-hidden="true"
       />

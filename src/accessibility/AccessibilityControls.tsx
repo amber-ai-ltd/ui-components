@@ -60,6 +60,11 @@ export function AccessibilityControls({
     'bottom-left': 'bottom-4 left-4',
     'top-right': 'top-4 right-4',
   };
+  
+  const panelClasses = {
+    'bottom-left': 'bottom-20 left-4',
+    'top-right': 'top-20 right-4',
+  };
 
   useEffect(() => {
     const saved = loadSettings();

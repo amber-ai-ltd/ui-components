@@ -23,13 +23,18 @@ type ButtonAsLink = BaseButtonProps & AnchorHTMLAttributes<HTMLAnchorElement> & 
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
+const FLOATING_BUTTON_STYLES = {
+  base: 'fixed rounded-full shadow-lg z-50 w-12 h-12 !p-0 transition-colors focus:ring-4',
+  colors: 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600 focus:ring-blue-300'
+};
+
 const buttonVariants: Record<ButtonVariant, string> = {
   primary: 'bg-primary-600 hover:bg-primary-700 text-white border-primary-600',
   secondary: 'bg-secondary-600 hover:bg-secondary-700 text-white border-secondary-600',
   outline: 'bg-transparent hover:bg-primary-50 dark:hover:bg-primary-900 text-primary-600 border-primary-600',
   ghost: 'bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 border-transparent',
   destructive: 'bg-red-600 hover:bg-red-700 text-white border-red-600',
-  floating: 'fixed bg-blue-600 hover:bg-blue-700 text-white border-blue-600 rounded-full shadow-lg z-50 w-12 h-12 !p-0'
+  floating: `${FLOATING_BUTTON_STYLES.base} ${FLOATING_BUTTON_STYLES.colors}`
 };
 
 const buttonSizes: Record<ButtonSize, string> = {

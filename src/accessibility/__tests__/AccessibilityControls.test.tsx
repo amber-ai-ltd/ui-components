@@ -13,7 +13,7 @@ describe('AccessibilityControls', () => {
     fireEvent.click(screen.getByLabelText('Accessibility settings'));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     
-    fireEvent.click(screen.getByLabelText('Close'));
+    fireEvent.click(screen.getByLabelText('Close accessibility settings'));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
@@ -59,7 +59,7 @@ describe('AccessibilityControls', () => {
     fireEvent.click(screen.getByRole('switch', { name: /large text/i }));
     fireEvent.click(screen.getByRole('switch', { name: /text spacing/i }));
     
-    fireEvent.click(screen.getByText('Reset'));
+    fireEvent.click(screen.getByText('Reset to Defaults'));
     
     expect(document.documentElement).not.toHaveClass('large-text', 'text-spacing');
     screen.getAllByRole('switch').forEach(toggle => {
