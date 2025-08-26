@@ -66,4 +66,17 @@ describe('AccessibilityControls', () => {
       expect(toggle).toHaveAttribute('aria-checked', 'false');
     });
   });
+
+  it('applies different shapes to the floating button', () => {
+    const { rerender } = render(<AccessibilityControls shape="circle" />);
+    const button = screen.getByLabelText('Accessibility settings');
+    
+    expect(button).toHaveClass('rounded-full');
+    
+    rerender(<AccessibilityControls shape="square" />);
+    expect(button).toHaveClass('rounded-lg');
+    
+    rerender(<AccessibilityControls shape="hexagon" />);
+    expect(button).toHaveClass('hexagon-shape');
+  });
 });

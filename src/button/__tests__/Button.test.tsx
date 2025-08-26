@@ -62,7 +62,7 @@ describe('Button', () => {
     expect(button).toHaveClass('bg-red-600');
     
     rerender(<Button variant="floating">Test</Button>);
-    expect(button).toHaveClass('fixed', 'rounded-full');
+    expect(button).toHaveClass('fixed');
   });
 
   it('applies sizes', () => {
@@ -73,5 +73,26 @@ describe('Button', () => {
     
     rerender(<Button size="lg">Test</Button>);
     expect(button).toHaveClass('px-6');
+  });
+
+  it('applies shapes for floating buttons', () => {
+    const { rerender } = render(<Button variant="floating" shape="circle">Test</Button>);
+    const button = screen.getByRole('button');
+    
+    expect(button).toHaveClass('rounded-full');
+    
+    rerender(<Button variant="floating" shape="square">Test</Button>);
+    expect(button).toHaveClass('rounded-lg');
+    
+    rerender(<Button variant="floating" shape="hexagon">Test</Button>);
+    expect(button).toHaveClass('hexagon-shape');
+  });
+
+  it('ignores shapes for non-floating buttons', () => {
+    render(<Button variant="primary" shape="hexagon">Test</Button>);
+    const button = screen.getByRole('button');
+    
+    expect(button).toHaveClass('rounded-md');
+    expect(button).not.toHaveClass('hexagon-shape');
   });
 });

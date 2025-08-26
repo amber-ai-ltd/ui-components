@@ -3,6 +3,6 @@ export { Toggle } from './toggle/Toggle.js';
 export { AccessibilityControls } from './accessibility/AccessibilityControls.js';
 export { ThemeProvider, useTheme } from './theme/ThemeContext.js';
 export type { Theme } from './theme/types.js';
-export type { ButtonProps, ButtonVariant, ButtonSize } from './button/Button.js';
+export type { ButtonProps, ButtonVariant, ButtonSize, ButtonShape } from './button/Button.js';
 export type { ToggleSize } from './toggle/Toggle.js';
 export type { AccessibilitySettings } from './accessibility/AccessibilityPanel.js';

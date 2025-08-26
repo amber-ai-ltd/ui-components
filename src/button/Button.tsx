@@ -2,10 +2,12 @@ import { forwardRef, type ButtonHTMLAttributes, type AnchorHTMLAttributes, type 
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'floating';
 export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonShape = 'circle' | 'square' | 'hexagon';
 
 type BaseButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  shape?: ButtonShape;
   children: ReactNode;
   className?: string;
   fullWidth?: boolean;
@@ -24,9 +26,31 @@ type ButtonAsLink = BaseButtonProps & AnchorHTMLAttributes<HTMLAnchorElement> & 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const FLOATING_BUTTON_STYLES = {
-  base: 'fixed rounded-full shadow-lg z-50 w-12 h-12 !p-0 transition-colors focus:ring-4',
+  base: 'fixed shadow-lg z-50 w-12 h-12 !p-0 transition-colors focus:ring-4',
   colors: 'bg-primary-600 hover:bg-primary-700 text-white border-primary-600 focus:ring-primary-300'
 };
+
+const SHAPE_STYLES: Record<ButtonShape, string> = {
+  circle: 'rounded-full',
+  square: 'rounded-lg',
+  hexagon: 'hexagon-shape'
+};
+
+// Hexagon CSS-only shape using clip-path
+const HEXAGON_STYLES = `
+  .hexagon-shape {
+    clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+    transition: all 0.3s ease;
+  }
+  
+  .hexagon-shape:hover {
+    transform: scale(1.05);
+  }
+  
+  .hexagon-shape:active {
+    transform: scale(0.95);
+  }
+`;
 
 const buttonVariants: Record<ButtonVariant, string> = {
   primary: 'bg-primary-600 hover:bg-primary-700 text-white border-primary-600',
@@ -43,11 +67,20 @@ const buttonSizes: Record<ButtonSize, string> = {
   lg: 'px-6 py-3 text-lg'
 };
 
+// Inject hexagon styles into the document head if not already present
+if (typeof document !== 'undefined' && !document.querySelector('#hexagon-styles')) {
+  const style = document.createElement('style');
+  style.id = 'hexagon-styles';
+  style.textContent = HEXAGON_STYLES;
+  document.head.appendChild(style);
+}
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const { 
       variant = 'primary', 
       size = 'md', 
+      shape = 'circle',
       className = '', 
       children, 
       fullWidth = false, 
@@ -57,9 +90,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...restProps 
     } = props;
     
-    const baseClasses = `inline-flex items-center justify-center rounded-md border font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${fullWidth ? 'w-full' : ''}`;
+    // Special handling for floating buttons with shapes
+    const isFloating = variant === 'floating';
+    const shapeClasses = isFloating ? SHAPE_STYLES[shape] : 'rounded-md';
+    
+    const baseClasses = `inline-flex items-center justify-center ${shapeClasses} border font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${fullWidth ? 'w-full' : ''}`;
     const variantClasses = buttonVariants[variant];
-    const sizeClasses = buttonSizes[size];
+    const sizeClasses = isFloating ? '' : buttonSizes[size]; // Floating buttons have fixed size
     const combinedClassName = `${baseClasses} ${variantClasses} ${sizeClasses} ${className}`;
     
     const content = (

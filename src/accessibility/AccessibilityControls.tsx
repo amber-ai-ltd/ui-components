@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Button } from '../button/Button.js';
+import { Button, type ButtonShape } from '../button/Button.js';
 import { SettingsIcon } from '../icons/index.js';
 import { AccessibilityPanel, type AccessibilitySettings } from './AccessibilityPanel.js';
 
 interface AccessibilityControlsProps {
   position?: 'bottom-left' | 'top-right';
+  shape?: ButtonShape;
   labels?: {
     button?: string;
     title?: string;
@@ -50,7 +51,8 @@ function applySettings(settings: AccessibilitySettings): void {
 }
 
 export function AccessibilityControls({ 
-  position = 'bottom-left', 
+  position = 'bottom-left',
+  shape = 'circle',
   labels = {} 
 }: AccessibilityControlsProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,6 +92,7 @@ export function AccessibilityControls({
       <Button
         onClick={() => setIsOpen(!isOpen)}
         variant="floating"
+        shape={shape}
         className={positionClasses[position]}
         aria-label={labels.button || 'Accessibility settings'}
         aria-expanded={isOpen}
