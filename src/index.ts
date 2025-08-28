@@ -6,6 +6,8 @@ export { LegalDocument } from './legal/LegalDocument.js';
 export { DocumentHeader } from './legal/DocumentHeader.js';
 export { TableOfContents } from './legal/TableOfContents.js';
 export { LegalSidebar } from './legal/LegalSidebar.js';
+export { LegalBreadcrumb } from './legal/LegalBreadcrumb.js';
+export { LegalPortal } from './legal/LegalPortal.js';
 export { ThemeProvider, useTheme } from './theme/ThemeContext.js';
 export { amberTheme } from './theme/amberTheme.js';
 export type { Theme, BrandTheme, ColorMode, BrandColors, CompanyBranding } from './theme/types.js';

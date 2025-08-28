@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '../theme/ThemeContext.js';
 
 interface LegalDocument {
   title: string;
@@ -21,6 +22,7 @@ export const LegalSidebar: React.FC<LegalSidebarProps> = ({
   currentDocument, 
   documents 
 }) => {
+  const { theme } = useTheme();
   const essentialDocs = documents.filter(doc => doc.essential);
   const additionalDocs = documents.filter(doc => !doc.essential);
 
@@ -28,7 +30,7 @@ export const LegalSidebar: React.FC<LegalSidebarProps> = ({
     <nav className="sidebar-nav" aria-label="Legal documents navigation">
       <div className="sidebar-header">
         <h2 className="sidebar-title">Legal Centre</h2>
-        <p className="sidebar-subtitle">AMBER AI LTD</p>
+        <p className="sidebar-subtitle">{theme.branding.legalName}</p>
       </div>
 
       <div className="nav-section">
