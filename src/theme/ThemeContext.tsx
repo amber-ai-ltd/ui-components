@@ -16,10 +16,9 @@ interface ThemeProviderProps {
 
 function getStoredColorMode(): ColorMode | null {
   try {
-    const stored = localStorage.getItem('colorMode');
-    return stored === 'light' || stored === 'dark' ? stored : null;
+    localStorage.removeItem('colorMode');
+    return null;
   } catch (error) {
-    console.warn('Color mode preference could not be retrieved:', error);
     return null;
   }
 }
@@ -45,7 +44,7 @@ function applyTheme(brandTheme: BrandTheme, colorMode: ColorMode): void {
 
 export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProps) {
   const [colorMode, setColorMode] = useState<ColorMode>(() => {
-    return getStoredColorMode() || getSystemColorMode();
+    return getStoredColorMode() || 'dark';
   });
   
   const theme = { ...brandTheme, colorMode };
