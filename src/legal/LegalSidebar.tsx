@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/legalSidebar.css';
 
 interface LegalDocument {
   title: string;

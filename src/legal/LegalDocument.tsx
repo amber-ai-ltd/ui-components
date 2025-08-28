@@ -3,11 +3,6 @@ import { DocumentHeader } from './DocumentHeader.js';
 import { TableOfContents } from './TableOfContents.js';
 import { DOCUMENT_CLASSES } from './constants.js';
 import type { LegalDocumentProps, Section } from './types.js';
-import './styles/documentContainer.css';
-import './styles/documentHeader.css';
-import './styles/tableOfContents.css';
-import './styles/documentContent.css';
-import './styles/contentElements.css';
 
 interface LegalDocumentComponentProps extends LegalDocumentProps {
   children: ReactNode;
