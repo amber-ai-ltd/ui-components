@@ -1,6 +1,6 @@
 {
   "name": "@amber-ai-ltd/ui-components",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Battle-tested UI components for AmberAI websites and client projects",
   "repository": {
     "type": "git",
@@ -17,13 +17,7 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./dist/legal/styles/legalPortal.css": "./dist/legal/styles/legalPortal.css",
-    "./dist/legal/styles/legalSidebar.css": "./dist/legal/styles/legalSidebar.css",
-    "./dist/legal/styles/documentContainer.css": "./dist/legal/styles/documentContainer.css",
-    "./dist/legal/styles/documentHeader.css": "./dist/legal/styles/documentHeader.css",
-    "./dist/legal/styles/documentContent.css": "./dist/legal/styles/documentContent.css",
-    "./dist/legal/styles/contentElements.css": "./dist/legal/styles/contentElements.css",
-    "./dist/legal/styles/tableOfContents.css": "./dist/legal/styles/tableOfContents.css"
+    "./dist/legal.css": "./dist/legal.css"
   },
   "files": [
     "dist",
@@ -31,7 +25,7 @@
   ],
   "scripts": {
     "build": "tsc && pnpm run build:css",
-    "build:css": "cp -r src/legal/styles dist/legal/",
+    "build:css": "cat src/legal/styles/*.css > dist/legal.css",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
