@@ -60,8 +60,8 @@
 }
 
 .nav-link.active {
-  background-color: var(--theme-primary-light, #fef3c7);
-  color: var(--theme-primary-text, #92400e);
+  background-color: var(--theme-primary-light, #fffbeb);
+  color: var(--theme-primary-text, #78350f);
   font-weight: 500;
 }
 
@@ -78,8 +78,8 @@
 }
 
 .nav-link.active .nav-version {
-  background-color: var(--theme-primary-border, #f3e8ff);
-  color: var(--theme-primary-text, #92400e);
+  background-color: var(--theme-primary-border, #fed7aa);
+  color: var(--theme-primary-text, #78350f);
 }
 
 .sidebar-footer {
