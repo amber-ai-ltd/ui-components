@@ -1,6 +1,6 @@
 {
   "name": "@amber-ai-ltd/ui-components",
-  "version": "1.6.1-canary.1",
+  "version": "1.7.0",
   "description": "Battle-tested UI components for AmberAI websites and client projects",
   "repository": {
     "type": "git",
@@ -16,7 +16,12 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./dist/legal-document.css": "./dist/legal-document.css",
+    "./dist/legal-theme.css": "./dist/legal-theme.css",
+    "./dist/legal-container.css": "./dist/legal-container.css",
+    "./dist/legal-header.css": "./dist/legal-header.css",
+    "./dist/legal-metadata.css": "./dist/legal-metadata.css"
   },
   "files": [
     "dist",

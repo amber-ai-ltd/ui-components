@@ -3,6 +3,11 @@ import { DocumentHeader } from './DocumentHeader.js';
 import { TableOfContents } from './TableOfContents.js';
 import { DOCUMENT_CLASSES } from './constants.js';
 import type { LegalDocumentProps, Section } from './types.js';
+import './styles/documentContainer.css';
+import './styles/documentHeader.css';
+import './styles/tableOfContents.css';
+import './styles/documentContent.css';
+import './styles/contentElements.css';
 
 interface LegalDocumentComponentProps extends LegalDocumentProps {
   children: ReactNode;
@@ -42,16 +47,18 @@ export const LegalDocument: React.FC<LegalDocumentComponentProps> = ({
     : [];
 
   return (
-    <article className={DOCUMENT_CLASSES.CONTAINER}>
-      <DocumentHeader metadata={metadata} companyInfo={companyInfo} />
-      
-      {showTableOfContents && sections.length > 0 && (
-        <TableOfContents sections={sections} />
-      )}
-      
-      <div className={DOCUMENT_CLASSES.CONTENT}>
-        {children}
-      </div>
-    </article>
+    <div className="document-container">
+      <article className={DOCUMENT_CLASSES.CONTAINER}>
+        <DocumentHeader metadata={metadata} companyInfo={companyInfo} />
+        
+        {showTableOfContents && sections.length > 0 && (
+          <TableOfContents sections={sections} />
+        )}
+        
+        <div className={DOCUMENT_CLASSES.CONTENT}>
+          {children}
+        </div>
+      </article>
+    </div>
   );
 };

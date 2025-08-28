@@ -1,0 +1,56 @@
+.legal-document-content {
+  @apply prose prose-lg dark:prose-invert max-w-none;
+  line-height: 1.8;
+  background: transparent !important;
+  color: inherit !important;
+}
+
+.dark .legal-document-content {
+  background-color: transparent !important;
+  color: #f8fafc !important;
+}
+
+.dark .legal-document-content * {
+  color: inherit !important;
+}
+
+.legal-document-content h1 {
+  @apply mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100;
+}
+
+.legal-document-content h2 {
+  @apply mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700;
+}
+
+.legal-document-content h3 {
+  @apply mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-200;
+}
+
+.legal-document-content h4 {
+  @apply mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-gray-700 dark:text-gray-300;
+}
+
+.legal-document-content p {
+  @apply leading-7 text-gray-600 dark:text-gray-400;
+  margin-bottom: 1.5rem;
+}
+
+.legal-document-content ul {
+  @apply my-6 ml-6 list-disc;
+}
+
+.legal-document-content ol {
+  @apply my-6 ml-6 list-decimal;
+}
+
+.legal-document-content li {
+  @apply mt-2 text-gray-600 dark:text-gray-400;
+}
+
+.legal-document-content blockquote {
+  @apply mt-6 border-l-2 border-primary-600 dark:border-primary-400 pl-6 italic text-gray-500 dark:text-gray-400;
+}
+
+.legal-document-content code {
+  @apply relative rounded bg-gray-100 dark:bg-gray-800 px-[0.3rem] py-[0.2rem] font-mono text-sm text-gray-800 dark:text-gray-200;
+}

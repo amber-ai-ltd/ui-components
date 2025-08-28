@@ -1,0 +1,43 @@
+.document-container {
+  @apply rounded-lg shadow-lg border max-w-4xl mx-auto relative;
+  @apply bg-white dark:bg-gray-800;
+  @apply border-gray-200 dark:border-gray-700;
+}
+
+.document-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0);
+  background-size: 20px 20px;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.legal-document {
+  @apply px-8 py-10;
+  background: transparent !important;
+  color: inherit;
+  --legal-primary: theme(colors.primary.600);
+  --legal-primary-hover: theme(colors.primary.700);
+  --legal-primary-light: theme(colors.amber.50);
+  --legal-primary-border: theme(colors.amber.200);
+  --legal-primary-text: theme(colors.amber.900);
+  --legal-primary-text-light: theme(colors.amber.100);
+  
+  position: relative;
+  z-index: 1;
+}
+
+.dark .legal-document {
+  --legal-primary: theme(colors.primary.400);
+  --legal-primary-hover: theme(colors.primary.300);
+  --legal-primary-light: theme(colors.primary.900 / 0.1);
+  --legal-primary-border: theme(colors.primary.800);
+  --legal-primary-text: theme(colors.primary.100);
+  --legal-primary-text-light: theme(colors.primary.900);
+}

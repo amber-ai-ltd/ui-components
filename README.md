@@ -1,35 +1,49 @@
 # AmberAI UI Components
 
-Battle-tested React UI components for AmberAI websites and client projects.
+Professional white-label UI components for AmberAI and client projects.
 
 ## Features
 
+- White-label theme system with brand customization
+- Dark/light mode with automatic system detection
 - TypeScript support with strict typing
-- Theme system with dark/light mode
-- Security-compliant dependencies with exact LTS versions
+- Framework-agnostic CSS architecture
 - Comprehensive testing with Vitest
 
 ## Components
 
-- `Button` - Versatile button component with variants
-- `ThemeProvider` - Context provider for theme management
-- `useTheme` - Hook for accessing theme state
+- `Button` - Themed button with brand colors
+- `LegalDocument` - Professional legal page system
+- `LegalSidebar` - Branded navigation component
+- `ThemeProvider` - Brand theme management
+- `CorporateFooter` - Company-branded footer
 
 ## Installation
 
 ```bash
-pnpm install @amber-ai/ui-components
+pnpm install @amber-ai-ltd/ui-components
 ```
 
-## Usage
+## Publishing
+
+This package is published to **GitHub Package Registry**, not npm.
+
+1. Commit all changes to git
+2. Update version in package.json
+3. Build: `pnpm build`
+4. Publish: `pnpm publish`
+
+Websites will automatically get updates when version is bumped.
+
+## Theme System
 
 ```tsx
-import { ThemeProvider, Button, useTheme } from '@amber-ai/ui-components';
+import { ThemeProvider, LegalDocument, amberTheme } from '@amber-ai-ltd/ui-components';
 
 function App() {
   return (
-    <ThemeProvider>
-      <Button variant="primary">Click me</Button>
+    <ThemeProvider theme={amberTheme}>
+      <LegalDocument metadata={metadata} companyInfo={companyInfo} />
     </ThemeProvider>
   );
 }

@@ -1,0 +1,51 @@
+.legal-document-content pre {
+  @apply mb-4 mt-6 overflow-x-auto rounded-lg border bg-black p-4 text-white;
+}
+
+.legal-document-content pre code {
+  @apply bg-transparent p-0 text-white;
+}
+
+.legal-document-content a {
+  @apply font-medium text-primary-600 dark:text-primary-400 underline underline-offset-4 hover:text-primary-700 dark:hover:text-primary-300;
+}
+
+.legal-document-content a[href^="http"]:not([href*="amberai.com"]) {
+  @apply after:content-['↗'];
+}
+
+.legal-document-content table {
+  @apply my-6 w-full overflow-y-auto;
+}
+
+.legal-document-content tr {
+  @apply m-0 border-t p-0 even:bg-gray-50 dark:even:bg-gray-800 border-gray-200 dark:border-gray-700;
+}
+
+.legal-document-content th {
+  @apply border px-4 py-2 text-left font-bold text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700;
+}
+
+.legal-document-content td {
+  @apply border px-4 py-2 text-left text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700;
+}
+
+.legal-document-content strong {
+  @apply font-semibold text-gray-900 dark:text-gray-100;
+}
+
+@media print {
+  .legal-document {
+    @apply max-w-none px-0;
+  }
+  
+  .legal-document-header {
+    @apply break-after-avoid;
+  }
+  
+  .legal-document-content h2,
+  .legal-document-content h3,
+  .legal-document-content h4 {
+    @apply break-after-avoid;
+  }
+}

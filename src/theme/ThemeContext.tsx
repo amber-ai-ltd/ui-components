@@ -1,52 +1,66 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import type { Theme } from './types';
+import type { Theme, ColorMode, BrandTheme } from './types.js';
 
 interface ThemeContextType {
   theme: Theme;
-  toggleTheme: () => void;
+  colorMode: ColorMode;
+  toggleColorMode: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
   children: ReactNode;
+  theme: BrandTheme;
 }
 
-function getStoredTheme(): Theme | null {
+function getStoredColorMode(): ColorMode | null {
   try {
-    const stored = localStorage.getItem('theme');
+    const stored = localStorage.getItem('colorMode');
     return stored === 'light' || stored === 'dark' ? stored : null;
   } catch (error) {
-    console.warn('Theme preference could not be retrieved:', error);
+    console.warn('Color mode preference could not be retrieved:', error);
     return null;
   }
 }
 
-function getSystemTheme(): Theme {
+function getSystemColorMode(): ColorMode {
   if (typeof window === 'undefined') return 'light';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
-function applyTheme(theme: Theme): void {
-  document.documentElement.classList.toggle('dark', theme === 'dark');
+function applyTheme(brandTheme: BrandTheme, colorMode: ColorMode): void {
+  const root = document.documentElement;
+  const colors = brandTheme.colors[colorMode];
+  
+  root.classList.toggle('dark', colorMode === 'dark');
+  
+  root.style.setProperty('--theme-primary', colors.primary);
+  root.style.setProperty('--theme-primary-hover', colors.primaryHover);
+  root.style.setProperty('--theme-primary-light', colors.primaryLight);
+  root.style.setProperty('--theme-primary-border', colors.primaryBorder);
+  root.style.setProperty('--theme-primary-text', colors.primaryText);
+  root.style.setProperty('--theme-primary-text-light', colors.primaryTextLight);
 }
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    return getStoredTheme() || getSystemTheme();
+export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProps) {
+  const [colorMode, setColorMode] = useState<ColorMode>(() => {
+    return getStoredColorMode() || getSystemColorMode();
   });
+  
+  const theme = { ...brandTheme, colorMode };
 
   useEffect(() => {
-    applyTheme(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    applyTheme(brandTheme, colorMode);
+    localStorage.setItem('colorMode', colorMode);
+  }, [brandTheme, colorMode]);
 
-  const toggleTheme = () => {
-    setTheme(current => current === 'light' ? 'dark' : 'light');
+  const toggleColorMode = () => {
+    setColorMode(current => current === 'light' ? 'dark' : 'light');
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, colorMode, toggleColorMode }}>
       {children}
     </ThemeContext.Provider>
   );
