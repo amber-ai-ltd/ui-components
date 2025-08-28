@@ -1,0 +1,47 @@
+:root {
+  --legal-spacing-xs: 0.25rem;
+  --legal-spacing-sm: 0.5rem;
+  --legal-spacing-md: 0.75rem;
+  --legal-spacing-lg: 1rem;
+  --legal-spacing-xl: 1.5rem;
+  --legal-spacing-2xl: 2rem;
+  
+  --legal-text-xs: 0.75rem;
+  --legal-text-sm: 0.875rem;
+  --legal-text-base: 1rem;
+  --legal-text-lg: 1.125rem;
+  --legal-text-xl: 1.25rem;
+  
+  --legal-border-radius: 0.5rem;
+  --legal-border-radius-sm: 0.25rem;
+  
+  --legal-transition: all 0.15s ease;
+}
+
+:root {
+  --legal-bg-light: #ffffff;
+  --legal-bg-gray: #f3f4f6;
+  --legal-bg-dark: #1f2937;
+  --legal-bg-darker: #111827;
+  
+  --legal-text-primary: #111827;
+  --legal-text-secondary: #4b5563;
+  --legal-text-tertiary: #6b7280;
+  
+  --legal-border-light: #e5e7eb;
+  --legal-border-dark: #374151;
+}
+
+.dark {
+  --legal-bg-light: #1f2937;
+  --legal-bg-gray: #374151;
+  --legal-bg-dark: #111827;
+  --legal-bg-darker: #030712;
+  
+  --legal-text-primary: #f9fafb;
+  --legal-text-secondary: #d1d5db;
+  --legal-text-tertiary: #9ca3af;
+  
+  --legal-border-light: #374151;
+  --legal-border-dark: #4b5563;
+}
