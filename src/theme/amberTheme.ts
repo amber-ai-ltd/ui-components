@@ -8,7 +8,7 @@ export const amberTheme: BrandTheme = {
       primaryHover: '#d97706',
       primaryLight: '#fffbeb',
       primaryBorder: '#fed7aa',
-      primaryText: '#78350f',
+      primaryText: '#92400e',
       primaryTextLight: '#fef3c7',
     },
     dark: {
