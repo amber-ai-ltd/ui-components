@@ -1,23 +1,21 @@
 import type { BrandTheme } from './types.js';
 
 export const amberTheme: BrandTheme = {
-  colorMode: 'light',
+  colorMode: 'dark',
   colors: {
     light: {
-      primary: '#f59e0b',
-      primaryHover: '#d97706',
-      primaryLight: '#fbbf24',
-      primaryBorder: '#fed7aa',
-      primaryText: '#111827',
-      primaryTextLight: '#fef3c7',
+      background: '#ffffff',
+      surface: '#f8fafc',
+      border: '#e2e8f0',
+      text: '#0f172a',
+      accent: '#f59e0b',
     },
     dark: {
-      primary: '#fbbf24',
-      primaryHover: '#f59e0b',
-      primaryLight: '#374151',
-      primaryBorder: '#92400e',
-      primaryText: '#fbbf24',
-      primaryTextLight: '#78350f',
+      background: '#0f172a',
+      surface: '#1e293b',
+      border: '#475569',
+      text: '#f8fafc',
+      accent: '#fbb041',
     },
   },
   branding: {

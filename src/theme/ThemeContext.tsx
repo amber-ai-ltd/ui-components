@@ -16,16 +16,10 @@ interface ThemeProviderProps {
 
 function getStoredColorMode(): ColorMode | null {
   try {
-    localStorage.removeItem('colorMode');
-    return null;
+    return localStorage.getItem('colorMode') as ColorMode | null;
   } catch (error) {
     return null;
   }
-}
-
-function getSystemColorMode(): ColorMode {
-  if (typeof window === 'undefined') return 'dark';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 function applyTheme(brandTheme: BrandTheme, colorMode: ColorMode): void {
@@ -34,25 +28,34 @@ function applyTheme(brandTheme: BrandTheme, colorMode: ColorMode): void {
   
   root.classList.toggle('dark', colorMode === 'dark');
   
-  root.style.setProperty('--theme-primary', colors.primary);
-  root.style.setProperty('--theme-primary-hover', colors.primaryHover);
-  root.style.setProperty('--theme-primary-light', colors.primaryLight);
-  root.style.setProperty('--theme-primary-border', colors.primaryBorder);
-  root.style.setProperty('--theme-primary-text', colors.primaryText);
-  root.style.setProperty('--theme-primary-text-light', colors.primaryTextLight);
+  root.style.setProperty('--theme-background', colors.background);
+  root.style.setProperty('--theme-surface', colors.surface);
+  root.style.setProperty('--theme-border', colors.border);
+  root.style.setProperty('--theme-text', colors.text);
+  root.style.setProperty('--theme-accent', colors.accent);
+  root.style.setProperty('--theme-accent-hover', colorMode === 'dark' ? '#f59e0b' : '#d97706');
 }
 
 export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProps) {
-  const [colorMode, setColorMode] = useState<ColorMode>(() => {
-    return getStoredColorMode() || 'dark';
-  });
+  const [colorMode, setColorMode] = useState<ColorMode>('dark');
+  const [isHydrated, setIsHydrated] = useState(false);
   
   const theme = { ...brandTheme, colorMode };
 
   useEffect(() => {
-    applyTheme(brandTheme, colorMode);
-    localStorage.setItem('colorMode', colorMode);
-  }, [brandTheme, colorMode]);
+    const stored = getStoredColorMode();
+    const initialMode = stored || 'dark';
+    setColorMode(initialMode);
+    setIsHydrated(true);
+    applyTheme(brandTheme, initialMode);
+  }, [brandTheme]);
+
+  useEffect(() => {
+    if (isHydrated) {
+      applyTheme(brandTheme, colorMode);
+      localStorage.setItem('colorMode', colorMode);
+    }
+  }, [brandTheme, colorMode, isHydrated]);
 
   const toggleColorMode = () => {
     setColorMode(current => current === 'light' ? 'dark' : 'light');

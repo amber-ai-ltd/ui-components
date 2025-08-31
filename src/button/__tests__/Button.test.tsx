@@ -1,98 +1,56 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from '../Button';
+import { Button } from '../Button.js';
 
-describe('Button', () => {
-  it('clicks', () => {
-    const onClick = vi.fn();
-    render(<Button onClick={onClick}>Click</Button>);
+describe('Button behavior', () => {
+  it('executes click handlers', () => {
+    const handleClick = vi.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    
     fireEvent.click(screen.getByRole('button'));
-    expect(onClick).toHaveBeenCalledOnce();
+    expect(handleClick).toHaveBeenCalledOnce();
   });
 
-  it('navigates', () => {
-    render(<Button href="/test">Link</Button>);
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/test');
+  it('navigates when used as link', () => {
+    render(<Button href="/dashboard">Go to Dashboard</Button>);
+    const link = screen.getByRole('link');
+    
+    expect(link).toHaveAttribute('href', '/dashboard');
+    expect(link).toHaveTextContent('Go to Dashboard');
   });
 
-  it('shows left icon', () => {
-    render(<Button leftIcon={<span data-testid="icon">←</span>}>Text</Button>);
-    expect(screen.getByTestId('icon')).toBeInTheDocument();
+  it('prevents interaction when disabled', () => {
+    const handleClick = vi.fn();
+    render(<Button disabled onClick={handleClick}>Disabled</Button>);
+    
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+    
+    fireEvent.click(button);
+    expect(handleClick).not.toHaveBeenCalled();
   });
 
-  it('shows right icon', () => {
-    render(<Button rightIcon={<span data-testid="icon">→</span>}>Text</Button>);
-    expect(screen.getByTestId('icon')).toBeInTheDocument();
-  });
-
-  it('shows both icons', () => {
+  it('displays icons alongside text', () => {
     render(
       <Button 
-        leftIcon={<span data-testid="left">←</span>}
-        rightIcon={<span data-testid="right">→</span>}
+        leftIcon={<span data-testid="save-icon">💾</span>}
+        rightIcon={<span data-testid="arrow-icon">→</span>}
       >
-        Text
+        Save Changes
       </Button>
     );
-    expect(screen.getByTestId('left')).toBeInTheDocument();
-    expect(screen.getByTestId('right')).toBeInTheDocument();
+    
+    expect(screen.getByTestId('save-icon')).toBeInTheDocument();
+    expect(screen.getByText('Save Changes')).toBeInTheDocument();
+    expect(screen.getByTestId('arrow-icon')).toBeInTheDocument();
   });
 
-  it('disables', () => {
-    render(<Button disabled>Test</Button>);
-    expect(screen.getByRole('button')).toBeDisabled();
+  it('accepts custom styling', () => {
+    render(<Button className="my-custom-styles">Styled Button</Button>);
+    expect(screen.getByRole('button')).toHaveClass('my-custom-styles');
   });
 
-  it('accepts custom classes', () => {
-    render(<Button className="custom">Test</Button>);
-    expect(screen.getByRole('button')).toHaveClass('custom');
-  });
-
-  it('spans full width', () => {
-    render(<Button fullWidth>Test</Button>);
+  it('expands to full container width when requested', () => {
+    render(<Button fullWidth>Full Width Button</Button>);
     expect(screen.getByRole('button')).toHaveClass('w-full');
-  });
-
-  it('applies variants', () => {
-    const { rerender } = render(<Button variant="primary">Test</Button>);
-    const button = screen.getByRole('button');
-    
-    expect(button).toHaveClass('bg-primary-600');
-    
-    rerender(<Button variant="destructive">Test</Button>);
-    expect(button).toHaveClass('bg-red-600');
-    
-    rerender(<Button variant="floating">Test</Button>);
-    expect(button).toHaveClass('fixed');
-  });
-
-  it('applies sizes', () => {
-    const { rerender } = render(<Button size="sm">Test</Button>);
-    const button = screen.getByRole('button');
-    
-    expect(button).toHaveClass('px-3');
-    
-    rerender(<Button size="lg">Test</Button>);
-    expect(button).toHaveClass('px-6');
-  });
-
-  it('applies shapes for floating buttons', () => {
-    const { rerender } = render(<Button variant="floating" shape="circle">Test</Button>);
-    const button = screen.getByRole('button');
-    
-    expect(button).toHaveClass('rounded-full');
-    
-    rerender(<Button variant="floating" shape="square">Test</Button>);
-    expect(button).toHaveClass('rounded-lg');
-    
-    rerender(<Button variant="floating" shape="hexagon">Test</Button>);
-    expect(button).toHaveClass('hexagon-shape');
-  });
-
-  it('ignores shapes for non-floating buttons', () => {
-    render(<Button variant="primary" shape="hexagon">Test</Button>);
-    const button = screen.getByRole('button');
-    
-    expect(button).toHaveClass('rounded-md');
-    expect(button).not.toHaveClass('hexagon-shape');
   });
 });

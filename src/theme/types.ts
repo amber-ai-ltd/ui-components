@@ -1,12 +1,11 @@
 export type ColorMode = 'light' | 'dark';
 
 export interface BrandColors {
-  primary: string;
-  primaryHover: string;
-  primaryLight: string;
-  primaryBorder: string;
-  primaryText: string;
-  primaryTextLight: string;
+  background: string;
+  surface: string;
+  border: string;
+  text: string;
+  accent: string;
 }
 
 export interface CompanyBranding {
