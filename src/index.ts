@@ -11,6 +11,7 @@ export { LegalPortal } from './legal/LegalPortal.js';
 export { ThemeProvider, useTheme } from './theme/ThemeContext.js';
 export { SunIcon, MoonIcon, SettingsIcon, CloseIcon } from './icons/index.js';
 export { ThemeToggle } from './theme/ThemeToggle.js';
+export { AstroToggle } from './theme/AstroToggle.js';
 export { amberTheme } from './theme/amberTheme.js';
 export type { Theme, BrandTheme, ColorMode, BrandColors, CompanyBranding } from './theme/types.js';
 export type { ButtonProps, ButtonVariant, ButtonSize, ButtonShape } from './button/Button.js';
