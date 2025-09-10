@@ -1,6 +1,6 @@
 {
   "name": "@amber-ai-ltd/ui-components",
-  "version": "1.10.1",
+  "version": "1.11.0",
   "description": "Battle-tested UI components for AmberAI websites and client projects",
   "repository": {
     "type": "git",
@@ -37,10 +37,11 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.0.1",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
-    "@testing-library/react": "16.0.1",
-    "@testing-library/jest-dom": "6.6.3",
     "@vitejs/plugin-react": "4.3.4",
     "@vitest/coverage-v8": "2.1.8",
     "jsdom": "26.1.0",

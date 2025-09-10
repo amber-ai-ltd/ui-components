@@ -13,6 +13,7 @@ export { SunIcon, MoonIcon, SettingsIcon, CloseIcon } from './icons/index.js';
 export { ThemeToggle } from './theme/ThemeToggle.js';
 export { AstroToggle } from './theme/AstroToggle.js';
 export { amberTheme } from './theme/amberTheme.js';
+export { ErrorLayout, ErrorMessage, ErrorActions, NotFoundPage, ServerErrorPage } from './error/index.js';
 export type { Theme, BrandTheme, ColorMode, BrandColors, CompanyBranding } from './theme/types.js';
 export type { ButtonProps, ButtonVariant, ButtonSize, ButtonShape } from './button/Button.js';
 export type { ToggleSize } from './toggle/Toggle.js';
