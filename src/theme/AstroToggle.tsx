@@ -1,5 +1,5 @@
-import { useTheme } from './ThemeContext';
-import { SunIcon, MoonIcon } from '../icons';
+import { useTheme } from './ThemeContext.js';
+import { SunIcon, MoonIcon } from '../icons/index.js';
 
 interface AstroToggleProps {
   className?: string;
