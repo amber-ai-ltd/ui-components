@@ -17,19 +17,19 @@ export const CookieConsentTextContent: React.FC<CookieConsentTextProps> = ({
   cookiePolicyUrl,
   text
 }) => (
-  <div className="cookie-consent-text-section">
-    <div className="cookie-consent-header">
-      <CookieIcon className="cookie-consent-icon" size={20} />
-      <h3 className="cookie-consent-title">
+  <div className="flex-1">
+    <div className="flex items-center gap-2 mb-2">
+      <CookieIcon className="text-gray-600 dark:text-gray-400 flex-shrink-0" size={20} />
+      <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
         {text.title}
       </h3>
     </div>
-    <p className="cookie-consent-description">
+    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
       {brandName} {text.description}
       {' '}
       <a 
         href={privacyPolicyUrl}
-        className="cookie-consent-link"
+        className="underline hover:no-underline transition-colors"
         style={{ color: brandColor }}
       >
         {text.privacyPolicyLinkText}
@@ -37,7 +37,7 @@ export const CookieConsentTextContent: React.FC<CookieConsentTextProps> = ({
       {text.linkSeparator}
       <a 
         href={cookiePolicyUrl}
-        className="cookie-consent-link"
+        className="underline hover:no-underline transition-colors"
         style={{ color: brandColor }}
       >
         {text.cookiePolicyLinkText}

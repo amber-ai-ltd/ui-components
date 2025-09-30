@@ -3,7 +3,6 @@ import { CookieConsentTextContent } from './CookieConsentText';
 import { CookieConsentActions } from './CookieConsentActions';
 import { getCookieConsentText, type CookieConsentText } from './cookieConsentContent';
 import { saveConsentChoice, hasValidConsent, type ConsentStatus } from './cookieConsentStorage';
-import './cookieConsent.css';
 
 export interface CookieConsentBannerProps {
   brandName: string;
@@ -56,13 +55,17 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
 
   if (!isVisible) return null;
 
-  const bannerClasses = [
-    'cookie-consent-banner',
-    `cookie-consent-banner--${position}`,
-    isAnimating 
-      ? 'cookie-consent-banner--visible'
-      : `cookie-consent-banner--hidden-${position}`
-  ].join(' ');
+  const positionClasses = position === 'top' 
+    ? 'top-0 border-b' 
+    : 'bottom-0 border-t';
+
+  const animationClasses = isAnimating 
+    ? 'translate-y-0 opacity-100' 
+    : position === 'top' 
+      ? '-translate-y-full opacity-0' 
+      : 'translate-y-full opacity-0';
+
+  const bannerClasses = `fixed left-0 right-0 ${positionClasses} bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 shadow-lg z-50 transform transition-all duration-300 ease-in-out ${animationClasses}`;
 
   return (
     <div 
@@ -70,8 +73,8 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
       role="banner"
       aria-label="Cookie consent banner"
     >
-      <div className="cookie-consent-container">
-        <div className="cookie-consent-content">
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
           <CookieConsentTextContent
             brandName={brandName}
             brandColor={brandColor}

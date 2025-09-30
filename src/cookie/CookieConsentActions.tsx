@@ -36,7 +36,7 @@ export const CookieConsentActions: React.FC<CookieConsentActionsProps> = ({
   };
 
   return (
-    <div className="cookie-consent-actions">
+    <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
       <Button
         variant="ghost"
         size="sm"
