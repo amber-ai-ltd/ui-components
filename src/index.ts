@@ -26,6 +26,10 @@ export { ThemeToggle } from './theme/ThemeToggle.js';
 export { amberTheme } from './theme/amberTheme.js';
 export { ErrorLayout, ErrorMessage, ErrorActions, NotFoundPage, ServerErrorPage } from './error/index.js';
 export { CookieConsentBanner, CookieIcon, CookieConsentActions, CookieConsentTextContent } from './cookie/index.js';
+export { ServiceCard } from './components/ServiceCard.js';
+export { FeatureCard } from './components/FeatureCard.js';
+export { HeroSection } from './components/HeroSection.js';
+export { ContactSection } from './components/ContactSection.js';
 export type { Theme, BrandTheme, ColorMode, BrandColors, CompanyBranding } from './theme/types.js';
 export type { ButtonProps, ButtonVariant, ButtonSize, ButtonShape } from './button/Button.js';
 export type { ToggleSize } from './toggle/Toggle.js';
@@ -33,3 +37,7 @@ export type { AccessibilitySettings } from './accessibility/AccessibilityPanel.j
 export type { FooterConfig, FooterVariant, CompanyInfo, ComplianceInfo } from './footer/types.js';
 export type { LegalDocumentProps, DocumentMetadata, DocumentType } from './legal/types.js';
 export type { CookieConsentBannerProps, CookieConsentText, ConsentStatus, ConsentData } from './cookie/index.js';
+export type { ServiceCardProps } from './components/ServiceCard.js';
+export type { FeatureCardProps } from './components/FeatureCard.js';
+export type { HeroSectionProps } from './components/HeroSection.js';
+export type { ContactSectionProps, ContactFeature } from './components/ContactSection.js';
