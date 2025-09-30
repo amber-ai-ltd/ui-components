@@ -21,6 +21,7 @@ export { BulbIcon } from './icons/BulbIcon.js';
 export { BarChartIcon } from './icons/BarChartIcon.js';
 export { LockIcon } from './icons/LockIcon.js';
 export { BuildingIcon } from './icons/BuildingIcon.js';
+export { MenuIcon } from './icons/MenuIcon.js';
 export { ThemeToggle } from './theme/ThemeToggle.js';
 export { amberTheme } from './theme/amberTheme.js';
 export { ErrorLayout, ErrorMessage, ErrorActions, NotFoundPage, ServerErrorPage } from './error/index.js';
