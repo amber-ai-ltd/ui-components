@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from '../button/Button';
-import type { CookieConsentText } from './cookieConsentContent';
-import type { ConsentStatus } from './cookieConsentStorage';
+import { Button } from '../button/Button.js';
+import type { CookieConsentText } from './cookieConsentContent.js';
+import type { ConsentStatus } from './cookieConsentStorage.js';
 
 export interface CookieConsentActionsProps {
   text: CookieConsentText;
@@ -37,15 +37,6 @@ export const CookieConsentActions: React.FC<CookieConsentActionsProps> = ({
 
   return (
     <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={handleCustomize}
-        className="w-full sm:w-auto"
-      >
-        {text.customizeButton}
-      </Button>
-      
       <Button
         variant="outline"
         size="sm"

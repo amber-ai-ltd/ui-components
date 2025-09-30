@@ -1,6 +1,6 @@
 import React from 'react';
-import { CookieIcon } from './CookieIcon';
-import type { CookieConsentText } from './cookieConsentContent';
+import { CookieIcon } from './CookieIcon.js';
+import type { CookieConsentText } from './cookieConsentContent.js';
 
 export interface CookieConsentTextProps {
   brandName: string;

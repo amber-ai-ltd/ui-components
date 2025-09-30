@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CookieConsentTextContent } from './CookieConsentText';
-import { CookieConsentActions } from './CookieConsentActions';
-import { getCookieConsentText, type CookieConsentText } from './cookieConsentContent';
-import { saveConsentChoice, hasValidConsent, type ConsentStatus } from './cookieConsentStorage';
+import { CookieConsentTextContent } from './CookieConsentText.js';
+import { CookieConsentActions } from './CookieConsentActions.js';
+import { getCookieConsentText, type CookieConsentText } from './cookieConsentContent.js';
+import { saveConsentChoice, hasValidConsent, type ConsentStatus } from './cookieConsentStorage.js';
 
 export interface CookieConsentBannerProps {
   brandName: string;
@@ -48,9 +48,15 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
   }, [delayMs]);
 
   const handleConsentAction = (choice: ConsentStatus) => {
+    console.log('Cookie consent choice:', choice);
     saveConsentChoice(choice);
     setIsAnimating(false);
     setTimeout(() => setIsVisible(false), 300);
+    
+    // Execute callbacks based on choice
+    if (choice === 'accepted') onAccept?.();
+    else if (choice === 'declined') onDecline?.();
+    else if (choice === 'customized') onCustomize?.();
   };
 
   if (!isVisible) return null;
