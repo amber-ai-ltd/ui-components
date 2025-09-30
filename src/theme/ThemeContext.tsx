@@ -15,6 +15,7 @@ interface ThemeProviderProps {
 }
 
 function getStoredColorMode(): ColorMode | null {
+  if (typeof window === 'undefined') return null;
   try {
     return localStorage.getItem('colorMode') as ColorMode | null;
   } catch (error) {
@@ -23,6 +24,8 @@ function getStoredColorMode(): ColorMode | null {
 }
 
 function applyTheme(brandTheme: BrandTheme, colorMode: ColorMode): void {
+  if (typeof window === 'undefined') return;
+  
   const root = document.documentElement;
   const colors = brandTheme.colors[colorMode];
   
@@ -70,8 +73,17 @@ export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProp
 
 export function useTheme(): ThemeContextType {
   const context = useContext(ThemeContext);
+  
   if (!context) {
+    if (typeof window === 'undefined') {
+      return {
+        theme: { colors: { dark: { background: '#1f2937', surface: '#374151', border: '#4b5563', text: '#f9fafb', accent: '#f59e0b' }, light: { background: '#ffffff', surface: '#f9fafb', border: '#e5e7eb', text: '#111827', accent: '#d97706' } }, branding: { legalName: 'Default Company Ltd', businessName: 'Default', domain: 'example.com' }, colorMode: 'dark' },
+        colorMode: 'dark',
+        toggleColorMode: () => {}
+      };
+    }
     throw new Error('useTheme must be used within ThemeProvider');
   }
+  
   return context;
 }
