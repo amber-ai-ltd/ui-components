@@ -1,8 +1,15 @@
-import { useTheme, ThemeProvider } from './ThemeContext.js';
+import { ThemeProvider } from './ThemeContext.js';
 import { SunIcon, MoonIcon } from '../icons/index.js';
 import { amberTheme } from './amberTheme.js';
-import { useEffect, useState } from 'react';
-import type { ColorMode } from './types.js';
+import { useThemeToggle } from './useThemeToggle.js';
+import { THEME_TOGGLE_SIZES } from './toggle-config.js';
+import { 
+  getToggleLabelStyles, 
+  getSunIconStyles, 
+  getMoonIconStyles, 
+  getToggleSliderStyles,
+  getAriaLabel 
+} from './toggle-styles.js';
 
 interface ThemeToggleProps {
   className?: string;
@@ -11,54 +18,10 @@ interface ThemeToggleProps {
   standalone?: boolean; // Force standalone mode with own ThemeProvider
 }
 
-// Global theme state functions that work across component boundaries
-function getGlobalColorMode(): ColorMode {
-  if (typeof window === 'undefined') return 'dark';
-  return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-}
-
-function setGlobalColorMode(mode: ColorMode) {
-  if (typeof window === 'undefined') return;
-  
-  document.documentElement.classList.toggle('dark', mode === 'dark');
-  localStorage.setItem('colorMode', mode);
-  
-  // Dispatch custom event to sync all ThemeToggle components
-  window.dispatchEvent(new CustomEvent('theme-change', { detail: { colorMode: mode } }));
-}
 
 function ThemeToggleCore({ className = '', size = 'md' }: Omit<ThemeToggleProps, 'theme' | 'standalone'>) {
-  const [localColorMode, setLocalColorMode] = useState<ColorMode>(getGlobalColorMode);
-  const isDark = localColorMode === 'dark';
-  
-  // Sync with global theme changes
-  useEffect(() => {
-    const handleThemeChange = (event: CustomEvent<{ colorMode: ColorMode }>) => {
-      setLocalColorMode(event.detail.colorMode);
-    };
-    
-    window.addEventListener('theme-change', handleThemeChange as EventListener);
-    
-    // Initial sync
-    setLocalColorMode(getGlobalColorMode());
-    
-    return () => {
-      window.removeEventListener('theme-change', handleThemeChange as EventListener);
-    };
-  }, []);
-  
-  const toggleColorMode = () => {
-    const newMode = isDark ? 'light' : 'dark';
-    setGlobalColorMode(newMode);
-  };
-
-  const sizeConfig = {
-    sm: { width: 53, height: 24, scale: 0.8 },
-    md: { width: 66, height: 30, scale: 1.2 },
-    lg: { width: 79, height: 36, scale: 1.4 }
-  };
-
-  const config = sizeConfig[size];
+  const { isDark, localColorMode, toggleColorMode } = useThemeToggle();
+  const config = THEME_TOGGLE_SIZES[size];
   const colors = amberTheme.colors[localColorMode];
 
   return (
@@ -69,41 +32,29 @@ function ThemeToggleCore({ className = '', size = 'md' }: Omit<ThemeToggleProps,
         onChange={toggleColorMode}
         className="opacity-0 absolute"
         id="astro-theme-toggle"
-        aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+        aria-label={getAriaLabel(isDark)}
       />
       <label
         htmlFor="astro-theme-toggle"
-        style={{
-          backgroundColor: colors.background,
-          border: `1px solid ${colors.border}`,
-          width: config.width,
-          height: config.height,
-          transform: `scale(${config.scale})`,
-          padding: '7.5px'
-        }}
+        style={getToggleLabelStyles(colors, config)}
         className="cursor-pointer flex items-center justify-between relative rounded-full transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2"
       >
         <SunIcon 
           className="absolute left-2 z-10 w-4 h-4 transition-all duration-500"
-          style={{ color: isDark ? '#64748b' : '#ffffff' }}
+          style={getSunIconStyles(isDark)}
         />
 
         <MoonIcon 
           className="absolute right-2 z-10 w-4 h-4 transition-all duration-500"
-          style={{ color: isDark ? colors.text : '#94a3b8' }}
+          style={getMoonIconStyles(isDark, colors)}
         />
 
         <div
-          style={{
-            backgroundColor: colors.accent,
-            width: config.height,
-            height: config.height,
-            transform: isDark ? 'translateX(28.5px)' : 'translateX(-7.5px)',
-          }}
+          style={getToggleSliderStyles(isDark, colors, config)}
           className="absolute rounded-full transition-all duration-500 ease-out"
         >
           <span className="sr-only">
-            {isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            {getAriaLabel(isDark)}
           </span>
         </div>
       </label>

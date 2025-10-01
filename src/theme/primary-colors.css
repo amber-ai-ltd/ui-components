@@ -1,0 +1,12 @@
+:root {
+  --ui-primary-50: var(--brand-primary-50, #f0f9ff);
+  --ui-primary-100: var(--brand-primary-100, #e0f2fe);
+  --ui-primary-200: var(--brand-primary-200, #bae6fd);
+  --ui-primary-300: var(--brand-primary-300, #7dd3fc);
+  --ui-primary-400: var(--brand-primary-400, #38bdf8);
+  --ui-primary-500: var(--brand-primary-500, #0ea5e9);
+  --ui-primary-600: var(--brand-primary-600, #0284c7);
+  --ui-primary-700: var(--brand-primary-700, #0369a1);
+  --ui-primary-800: var(--brand-primary-800, #075985);
+  --ui-primary-900: var(--brand-primary-900, #0c4a6e);
+}

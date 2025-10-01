@@ -1,0 +1,13 @@
+:root {
+  --ui-success-500: var(--brand-success-500, #10b981);
+  --ui-success-600: var(--brand-success-600, #059669);
+  --ui-success-700: var(--brand-success-700, #047857);
+  
+  --ui-warning-500: var(--brand-warning-500, #f59e0b);
+  --ui-warning-600: var(--brand-warning-600, #d97706);
+  --ui-warning-700: var(--brand-warning-700, #b45309);
+  
+  --ui-error-500: var(--brand-error-500, #ef4444);
+  --ui-error-600: var(--brand-error-600, #dc2626);
+  --ui-error-700: var(--brand-error-700, #b91c1c);
+}

@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Button, type ButtonShape } from '../button/Button.js';
+import { useState } from 'react';
+import { Button } from '../button/Button.js';
+import type { ButtonShape } from '../button/types.js';
 import { SettingsIcon } from '../icons/index.js';
-import { AccessibilityPanel, type AccessibilitySettings } from './AccessibilityPanel.js';
+import { AccessibilityPanel } from './AccessibilityPanel.js';
+import { useAccessibilitySettings } from './useAccessibilitySettings.js';
 
 interface AccessibilityControlsProps {
   position?: 'bottom-left' | 'top-right';
@@ -18,37 +20,6 @@ interface AccessibilityControlsProps {
   };
 }
 
-const DEFAULT_SETTINGS: AccessibilitySettings = {
-  reduceMotion: false,
-  highContrast: false,
-  largeText: false,
-  textSpacing: false,
-};
-
-function loadSettings(): AccessibilitySettings {
-  try {
-    const saved = localStorage.getItem('accessibility-settings');
-    return saved ? { ...DEFAULT_SETTINGS, ...JSON.parse(saved) } : DEFAULT_SETTINGS;
-  } catch {
-    return DEFAULT_SETTINGS;
-  }
-}
-
-function saveSettings(settings: AccessibilitySettings): void {
-  try {
-    localStorage.setItem('accessibility-settings', JSON.stringify(settings));
-  } catch {
-    console.warn('Failed to save accessibility settings');
-  }
-}
-
-function applySettings(settings: AccessibilitySettings): void {
-  const html = document.documentElement;
-  html.classList.toggle('reduce-motion', settings.reduceMotion);
-  html.classList.toggle('high-contrast', settings.highContrast);
-  html.classList.toggle('large-text', settings.largeText);
-  html.classList.toggle('text-spacing', settings.textSpacing);
-}
 
 export function AccessibilityControls({ 
   position = 'bottom-left',
@@ -56,35 +27,11 @@ export function AccessibilityControls({
   labels = {} 
 }: AccessibilityControlsProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [settings, setSettings] = useState<AccessibilitySettings>(DEFAULT_SETTINGS);
+  const { settings, updateSetting, resetSettings } = useAccessibilitySettings();
   
   const positionClasses = {
     'bottom-left': 'bottom-4 left-4',
     'top-right': 'top-4 right-4',
-  };
-  
-  const panelClasses = {
-    'bottom-left': 'bottom-20 left-4',
-    'top-right': 'top-20 right-4',
-  };
-
-  useEffect(() => {
-    const saved = loadSettings();
-    setSettings(saved);
-    applySettings(saved);
-  }, []);
-
-  const updateSetting = (key: keyof AccessibilitySettings, value: boolean) => {
-    const newSettings = { ...settings, [key]: value };
-    setSettings(newSettings);
-    applySettings(newSettings);
-    saveSettings(newSettings);
-  };
-
-  const resetSettings = () => {
-    setSettings(DEFAULT_SETTINGS);
-    applySettings(DEFAULT_SETTINGS);
-    saveSettings(DEFAULT_SETTINGS);
   };
 
   return (

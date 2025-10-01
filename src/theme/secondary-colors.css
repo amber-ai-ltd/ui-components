@@ -1,0 +1,12 @@
+:root {
+  --ui-secondary-50: var(--brand-secondary-50, #f8fafc);
+  --ui-secondary-100: var(--brand-secondary-100, #f1f5f9);
+  --ui-secondary-200: var(--brand-secondary-200, #e2e8f0);
+  --ui-secondary-300: var(--brand-secondary-300, #cbd5e1);
+  --ui-secondary-400: var(--brand-secondary-400, #94a3b8);
+  --ui-secondary-500: var(--brand-secondary-500, #64748b);
+  --ui-secondary-600: var(--brand-secondary-600, #475569);
+  --ui-secondary-700: var(--brand-secondary-700, #334155);
+  --ui-secondary-800: var(--brand-secondary-800, #1e293b);
+  --ui-secondary-900: var(--brand-secondary-900, #0f172a);
+}

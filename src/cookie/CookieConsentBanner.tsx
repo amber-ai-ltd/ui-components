@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CookieConsentTextContent } from './CookieConsentText.js';
 import { CookieConsentActions } from './CookieConsentActions.js';
 import { getCookieConsentText, type CookieConsentText } from './cookieConsentContent.js';
-import { saveConsentChoice, hasValidConsent, type ConsentStatus } from './cookieConsentStorage.js';
+import { useCookieConsent } from './useCookieConsent.js';
+import { getCookieBannerClasses } from './animation.js';
+import type { ConsentStatus } from './cookieConsentStorage.js';
 
 export interface CookieConsentBannerProps {
   brandName: string;
@@ -31,47 +33,16 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
   onDecline,
   onCustomize
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-
+  const { isVisible, isAnimating, handleConsentAction } = useCookieConsent(delayMs);
   const text = { ...getCookieConsentText(locale), ...customText };
-
-  useEffect(() => {
-    if (hasValidConsent()) return;
-    
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-      setIsAnimating(true);
-    }, delayMs);
-
-    return () => clearTimeout(timer);
-  }, [delayMs]);
-
-  const handleConsentAction = (choice: ConsentStatus) => {
-    console.log('Cookie consent choice:', choice);
-    saveConsentChoice(choice);
-    setIsAnimating(false);
-    setTimeout(() => setIsVisible(false), 300);
-    
-    // Execute callbacks based on choice
-    if (choice === 'accepted') onAccept?.();
-    else if (choice === 'declined') onDecline?.();
-    else if (choice === 'customized') onCustomize?.();
-  };
 
   if (!isVisible) return null;
 
-  const positionClasses = position === 'top' 
-    ? 'top-0 border-b' 
-    : 'bottom-0 border-t';
-
-  const animationClasses = isAnimating 
-    ? 'translate-y-0 opacity-100' 
-    : position === 'top' 
-      ? '-translate-y-full opacity-0' 
-      : 'translate-y-full opacity-0';
-
-  const bannerClasses = `fixed left-0 right-0 ${positionClasses} bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 shadow-lg z-50 transform transition-all duration-300 ease-in-out ${animationClasses}`;
+  const bannerClasses = getCookieBannerClasses(isVisible, isAnimating, position);
+  
+  const onConsentAction = (choice: ConsentStatus) => {
+    handleConsentAction(choice, { onAccept, onDecline, onCustomize });
+  };
 
   return (
     <div 
@@ -92,7 +63,7 @@ export const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
           <CookieConsentActions
             text={text}
             brandColor={brandColor}
-            onAction={handleConsentAction}
+            onAction={onConsentAction}
             onAccept={onAccept}
             onDecline={onDecline}
             onCustomize={onCustomize}

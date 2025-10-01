@@ -1,0 +1,52 @@
+:root {
+  /* Brand-agnostic semantic color system */
+  
+  /* Primary brand colors */
+  --ui-primary-50: var(--brand-primary-50, #f0f9ff);
+  --ui-primary-100: var(--brand-primary-100, #e0f2fe);
+  --ui-primary-200: var(--brand-primary-200, #bae6fd);
+  --ui-primary-300: var(--brand-primary-300, #7dd3fc);
+  --ui-primary-400: var(--brand-primary-400, #38bdf8);
+  --ui-primary-500: var(--brand-primary-500, #0ea5e9);
+  --ui-primary-600: var(--brand-primary-600, #0284c7);
+  --ui-primary-700: var(--brand-primary-700, #0369a1);
+  --ui-primary-800: var(--brand-primary-800, #075985);
+  --ui-primary-900: var(--brand-primary-900, #0c4a6e);
+  
+  /* Secondary brand colors */
+  --ui-secondary-50: var(--brand-secondary-50, #f8fafc);
+  --ui-secondary-100: var(--brand-secondary-100, #f1f5f9);
+  --ui-secondary-200: var(--brand-secondary-200, #e2e8f0);
+  --ui-secondary-300: var(--brand-secondary-300, #cbd5e1);
+  --ui-secondary-400: var(--brand-secondary-400, #94a3b8);
+  --ui-secondary-500: var(--brand-secondary-500, #64748b);
+  --ui-secondary-600: var(--brand-secondary-600, #475569);
+  --ui-secondary-700: var(--brand-secondary-700, #334155);
+  --ui-secondary-800: var(--brand-secondary-800, #1e293b);
+  --ui-secondary-900: var(--brand-secondary-900, #0f172a);
+  
+  /* Semantic system colors */
+  --ui-success-500: var(--brand-success-500, #10b981);
+  --ui-success-600: var(--brand-success-600, #059669);
+  --ui-success-700: var(--brand-success-700, #047857);
+  
+  --ui-warning-500: var(--brand-warning-500, #f59e0b);
+  --ui-warning-600: var(--brand-warning-600, #d97706);
+  --ui-warning-700: var(--brand-warning-700, #b45309);
+  
+  --ui-error-500: var(--brand-error-500, #ef4444);
+  --ui-error-600: var(--brand-error-600, #dc2626);
+  --ui-error-700: var(--brand-error-700, #b91c1c);
+  
+  /* Neutral grays */
+  --ui-gray-50: var(--brand-gray-50, #f9fafb);
+  --ui-gray-100: var(--brand-gray-100, #f3f4f6);
+  --ui-gray-200: var(--brand-gray-200, #e5e7eb);
+  --ui-gray-300: var(--brand-gray-300, #d1d5db);
+  --ui-gray-400: var(--brand-gray-400, #9ca3af);
+  --ui-gray-500: var(--brand-gray-500, #6b7280);
+  --ui-gray-600: var(--brand-gray-600, #4b5563);
+  --ui-gray-700: var(--brand-gray-700, #374151);
+  --ui-gray-800: var(--brand-gray-800, #1f2937);
+  --ui-gray-900: var(--brand-gray-900, #111827);
+}

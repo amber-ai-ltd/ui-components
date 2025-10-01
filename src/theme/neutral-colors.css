@@ -1,0 +1,12 @@
+:root {
+  --ui-gray-50: var(--brand-gray-50, #f9fafb);
+  --ui-gray-100: var(--brand-gray-100, #f3f4f6);
+  --ui-gray-200: var(--brand-gray-200, #e5e7eb);
+  --ui-gray-300: var(--brand-gray-300, #d1d5db);
+  --ui-gray-400: var(--brand-gray-400, #9ca3af);
+  --ui-gray-500: var(--brand-gray-500, #6b7280);
+  --ui-gray-600: var(--brand-gray-600, #4b5563);
+  --ui-gray-700: var(--brand-gray-700, #374151);
+  --ui-gray-800: var(--brand-gray-800, #1f2937);
+  --ui-gray-900: var(--brand-gray-900, #111827);
+}
