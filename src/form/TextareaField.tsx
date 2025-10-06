@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '../theme/ThemeContext.js';
 
 interface TextareaFieldProps {
   id: string;
@@ -28,31 +27,15 @@ export const TextareaField: React.FC<TextareaFieldProps> = ({
   onChange,
   onBlur,
 }) => {
-  const { theme, colorMode } = useTheme();
   const showError = error && touched;
   const errorId = `${id}-error`;
-  const colors = theme.colors[colorMode];
-
-  const labelStyle = {
-    color: colors.text,
-  };
-
-  const textareaStyle = {
-    backgroundColor: colors.surface,
-    borderColor: showError ? '#ef4444' : colors.border,
-    color: colors.text,
-  };
-
-  const errorStyle = {
-    color: '#ef4444',
-  };
 
   return (
     <div>
       <label 
         htmlFor={id} 
         className="block text-sm font-medium mb-2"
-        style={labelStyle}
+        style={{ color: 'var(--theme-text)' }}
       >
         {label} {required && '*'}
       </label>
@@ -67,20 +50,19 @@ export const TextareaField: React.FC<TextareaFieldProps> = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-opacity-50 transition-colors placeholder-opacity-60"
+        className="w-full px-4 py-3 border rounded-lg focus:ring-2 transition-colors"
         style={{
-          ...textareaStyle,
-          focusRingColor: colors.accent,
-          borderColor: showError ? '#ef4444' : colors.border,
-          '--tw-ring-color': colors.accent,
-        } as React.CSSProperties}
+          backgroundColor: 'var(--theme-surface)',
+          borderColor: showError ? '#ef4444' : 'var(--theme-border)',
+          color: 'var(--theme-text)',
+        }}
         placeholder={placeholder}
       />
       {showError && (
         <div 
           id={errorId} 
           className="mt-1 text-sm" 
-          style={errorStyle}
+          style={{ color: '#ef4444' }}
           role="alert" 
           aria-live="polite"
         >

@@ -14,8 +14,8 @@ import {
 interface ThemeToggleProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
-  theme?: any; // Allow custom theme override
-  standalone?: boolean; // Force standalone mode with own ThemeProvider
+  theme?: any;
+  standalone?: boolean;
 }
 
 
@@ -62,10 +62,8 @@ function ThemeToggleCore({ className = '', size = 'md' }: Omit<ThemeToggleProps,
   );
 }
 
-// Bulletproof ThemeToggle that works standalone or within existing ThemeProvider
 export function ThemeToggle({ theme = amberTheme, standalone = false, ...props }: ThemeToggleProps) {
   if (standalone) {
-    // Always provide own context in standalone mode
     return (
       <ThemeProvider theme={theme}>
         <ThemeToggleCore {...props} />
@@ -73,6 +71,5 @@ export function ThemeToggle({ theme = amberTheme, standalone = false, ...props }
     );
   }
   
-  // Default mode - expects existing ThemeProvider context
   return <ThemeToggleCore {...props} />;
 }

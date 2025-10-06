@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '../theme/ThemeContext.js';
 
 interface SelectOption {
   value: string;
@@ -27,25 +26,12 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   onChange,
   onBlur,
 }) => {
-  const { theme, colorMode } = useTheme();
-  const colors = theme.colors[colorMode];
-
-  const labelStyle = {
-    color: colors.text,
-  };
-
-  const selectStyle = {
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    color: colors.text,
-  };
-
   return (
     <div>
       <label 
         htmlFor={id} 
         className="block text-sm font-medium mb-2"
-        style={labelStyle}
+        style={{ color: 'var(--theme-text)' }}
       >
         {label} {required && '*'}
       </label>
@@ -56,11 +42,12 @@ export const SelectField: React.FC<SelectFieldProps> = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-opacity-50 transition-colors"
+        className="w-full px-4 py-3 border rounded-lg focus:ring-2 transition-colors"
         style={{
-          ...selectStyle,
-          '--tw-ring-color': colors.accent,
-        } as React.CSSProperties}
+          backgroundColor: 'var(--theme-surface)',
+          borderColor: 'var(--theme-border)',
+          color: 'var(--theme-text)',
+        }}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
