@@ -17,7 +17,7 @@ interface ThemeProviderProps {
 function getStoredColorMode(): ColorMode | null {
   if (typeof window === 'undefined') return null;
   try {
-    return localStorage.getItem('colorMode') as ColorMode | null;
+    return localStorage.getItem('theme') as ColorMode | null;
   } catch (error) {
     return null;
   }
@@ -56,7 +56,7 @@ export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProp
   useEffect(() => {
     if (isHydrated) {
       applyTheme(brandTheme, colorMode);
-      localStorage.setItem('colorMode', colorMode);
+      localStorage.setItem('theme', colorMode);
     }
   }, [brandTheme, colorMode, isHydrated]);
 
