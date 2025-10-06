@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build": "tsc && pnpm run build:css",
-    "build:css": "cat src/legal/styles/*.css > dist/legal.css",
+    "build:css": "cat src/legal/styles/*.css > dist/legal.css && cp src/theme/*.css dist/theme/ && cp src/button/*.css dist/button/",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
