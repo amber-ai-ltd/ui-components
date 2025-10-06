@@ -39,19 +39,24 @@ function applyTheme(brandTheme: BrandTheme, colorMode: ColorMode): void {
   root.style.setProperty('--theme-accent-hover', colorMode === 'dark' ? '#f59e0b' : '#d97706');
 }
 
+function getInitialColorMode(): ColorMode {
+  if (typeof window === 'undefined') return 'dark';
+  const stored = getStoredColorMode();
+  if (stored) return stored;
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+  return 'light';
+}
+
 export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProps) {
-  const [colorMode, setColorMode] = useState<ColorMode>('dark');
+  const [colorMode, setColorMode] = useState<ColorMode>(getInitialColorMode);
   const [isHydrated, setIsHydrated] = useState(false);
   
   const theme = { ...brandTheme, colorMode };
 
   useEffect(() => {
-    const stored = getStoredColorMode();
-    const initialMode = stored || 'dark';
-    setColorMode(initialMode);
     setIsHydrated(true);
-    applyTheme(brandTheme, initialMode);
-  }, [brandTheme]);
+    applyTheme(brandTheme, colorMode);
+  }, [brandTheme, colorMode]);
 
   useEffect(() => {
     if (isHydrated) {
