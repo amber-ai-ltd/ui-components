@@ -1,8 +1,6 @@
 import { forwardRef } from 'react';
 import type { ButtonProps } from './types.js';
 import { BUTTON_VARIANTS, BUTTON_SIZES, SHAPE_STYLES } from './constants.js';
-import '../theme/brand-variables.css';
-import './hexagon.css';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
