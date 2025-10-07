@@ -43,8 +43,7 @@ function getInitialColorMode(): ColorMode {
   if (typeof window === 'undefined') return 'dark';
   const stored = getStoredColorMode();
   if (stored) return stored;
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-  return 'light';
+  return 'dark';
 }
 
 export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProps) {
