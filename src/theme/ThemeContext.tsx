@@ -48,21 +48,13 @@ function getInitialColorMode(): ColorMode {
 
 export function ThemeProvider({ children, theme: brandTheme }: ThemeProviderProps) {
   const [colorMode, setColorMode] = useState<ColorMode>(getInitialColorMode);
-  const [isHydrated, setIsHydrated] = useState(false);
   
   const theme = { ...brandTheme, colorMode };
 
   useEffect(() => {
-    setIsHydrated(true);
     applyTheme(brandTheme, colorMode);
+    localStorage.setItem('theme', colorMode);
   }, [brandTheme, colorMode]);
-
-  useEffect(() => {
-    if (isHydrated) {
-      applyTheme(brandTheme, colorMode);
-      localStorage.setItem('theme', colorMode);
-    }
-  }, [brandTheme, colorMode, isHydrated]);
 
   const toggleColorMode = () => {
     setColorMode(current => current === 'light' ? 'dark' : 'light');
