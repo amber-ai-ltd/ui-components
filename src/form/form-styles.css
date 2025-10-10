@@ -1,0 +1,92 @@
+.ui-text-input {
+  width: 100%;
+  padding: var(--ui-spacing-md, 1rem) var(--ui-spacing-lg, 1.5rem);
+  border: 1px solid var(--ui-gray-300);
+  border-radius: var(--ui-radius-md, 0.5rem);
+  background-color: var(--ui-gray-50);
+  color: var(--ui-gray-900);
+  transition: all 0.2s ease;
+}
+
+.ui-text-input:focus {
+  outline: none;
+  ring: 2px solid var(--ui-primary-500);
+  ring-offset: 2px;
+  border-color: var(--ui-primary-500);
+}
+
+.ui-text-input--error {
+  border-color: var(--ui-error-600);
+}
+
+.ui-label {
+  display: block;
+  font-size: var(--ui-text-sm, 0.875rem);
+  font-weight: 500;
+  margin-bottom: var(--ui-spacing-sm, 0.5rem);
+  color: var(--ui-gray-900);
+}
+
+.ui-error-message {
+  margin-top: var(--ui-spacing-xs, 0.25rem);
+  font-size: var(--ui-text-sm, 0.875rem);
+  color: var(--ui-error-600);
+}
+
+.ui-textarea {
+  width: 100%;
+  padding: var(--ui-spacing-md, 1rem) var(--ui-spacing-lg, 1.5rem);
+  border: 1px solid var(--ui-gray-300);
+  border-radius: var(--ui-radius-md, 0.5rem);
+  background-color: var(--ui-gray-50);
+  color: var(--ui-gray-900);
+  transition: all 0.2s ease;
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.ui-textarea:focus {
+  outline: none;
+  ring: 2px solid var(--ui-primary-500);
+  ring-offset: 2px;
+  border-color: var(--ui-primary-500);
+}
+
+.ui-textarea--error {
+  border-color: var(--ui-error-600);
+}
+
+.ui-select {
+  width: 100%;
+  padding: var(--ui-spacing-md, 1rem) var(--ui-spacing-lg, 1.5rem);
+  border: 1px solid var(--ui-gray-300);
+  border-radius: var(--ui-radius-md, 0.5rem);
+  background-color: var(--ui-gray-50);
+  color: var(--ui-gray-900);
+  transition: all 0.2s ease;
+}
+
+.ui-select:focus {
+  outline: none;
+  ring: 2px solid var(--ui-primary-500);
+  ring-offset: 2px;
+  border-color: var(--ui-primary-500);
+}
+
+.ui-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ui-spacing-md, 1rem);
+}
+
+.ui-checkbox {
+  margin-top: var(--ui-spacing-xs, 0.25rem);
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--ui-radius-sm, 0.25rem);
+  accent-color: var(--ui-primary-600);
+}
+
+.ui-checkbox:focus {
+  ring: 2px solid var(--ui-primary-500);
+}

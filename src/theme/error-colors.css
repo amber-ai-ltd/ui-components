@@ -1,0 +1,5 @@
+:root {
+  --ui-error-500: var(--brand-error-500, #ef4444);
+  --ui-error-600: var(--brand-error-600, #dc2626);
+  --ui-error-700: var(--brand-error-700, #b91c1c);
+}

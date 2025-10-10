@@ -1,4 +1,5 @@
 import React from 'react';
+import './form-styles.css';
 
 interface SelectOption {
   value: string;
@@ -30,8 +31,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
     <div>
       <label 
         htmlFor={id} 
-        className="block text-sm font-medium mb-2"
-        style={{ color: 'var(--theme-text)' }}
+        className="ui-label"
       >
         {label} {required && '*'}
       </label>
@@ -42,12 +42,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="w-full px-4 py-3 border rounded-lg focus:ring-2 transition-colors"
-        style={{
-          backgroundColor: 'var(--theme-surface)',
-          borderColor: 'var(--theme-border)',
-          color: 'var(--theme-text)',
-        }}
+        className="ui-select"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

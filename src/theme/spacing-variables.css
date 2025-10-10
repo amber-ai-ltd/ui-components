@@ -1,0 +1,16 @@
+:root {
+  --ui-spacing-xs: var(--brand-spacing-xs, 0.25rem);
+  --ui-spacing-sm: var(--brand-spacing-sm, 0.5rem);
+  --ui-spacing-md: var(--brand-spacing-md, 1rem);
+  --ui-spacing-lg: var(--brand-spacing-lg, 1.5rem);
+  --ui-spacing-xl: var(--brand-spacing-xl, 2rem);
+  
+  --ui-radius-sm: var(--brand-radius-sm, 0.25rem);
+  --ui-radius-md: var(--brand-radius-md, 0.5rem);
+  --ui-radius-lg: var(--brand-radius-lg, 0.75rem);
+  
+  --ui-text-xs: var(--brand-text-xs, 0.75rem);
+  --ui-text-sm: var(--brand-text-sm, 0.875rem);
+  --ui-text-md: var(--brand-text-md, 1rem);
+  --ui-text-lg: var(--brand-text-lg, 1.125rem);
+}

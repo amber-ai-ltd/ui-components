@@ -1,4 +1,5 @@
 import React from 'react';
+import './form-styles.css';
 
 interface TextareaFieldProps {
   id: string;
@@ -34,8 +35,7 @@ export const TextareaField: React.FC<TextareaFieldProps> = ({
     <div>
       <label 
         htmlFor={id} 
-        className="block text-sm font-medium mb-2"
-        style={{ color: 'var(--theme-text)' }}
+        className="ui-label"
       >
         {label} {required && '*'}
       </label>
@@ -50,19 +50,13 @@ export const TextareaField: React.FC<TextareaFieldProps> = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className="w-full px-4 py-3 border rounded-lg focus:ring-2 transition-colors"
-        style={{
-          backgroundColor: 'var(--theme-surface)',
-          borderColor: showError ? '#ef4444' : 'var(--theme-border)',
-          color: 'var(--theme-text)',
-        }}
+        className={`ui-textarea ${showError ? 'ui-textarea--error' : ''}`}
         placeholder={placeholder}
       />
       {showError && (
         <div 
           id={errorId} 
-          className="mt-1 text-sm" 
-          style={{ color: '#ef4444' }}
+          className="ui-error-message"
           role="alert" 
           aria-live="polite"
         >

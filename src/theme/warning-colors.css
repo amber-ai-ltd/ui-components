@@ -1,0 +1,5 @@
+:root {
+  --ui-warning-500: var(--brand-warning-500, #f59e0b);
+  --ui-warning-600: var(--brand-warning-600, #d97706);
+  --ui-warning-700: var(--brand-warning-700, #b45309);
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import './form-styles.css';
 
 interface ConsentCheckboxFieldProps {
   id: string;
@@ -18,7 +19,7 @@ export const ConsentCheckboxField: React.FC<ConsentCheckboxFieldProps> = ({
   onChange,
 }) => {
   return (
-    <div className="flex items-start space-x-3">
+    <div className="ui-checkbox-container">
       <input
         type="checkbox"
         id={id}
@@ -28,17 +29,14 @@ export const ConsentCheckboxField: React.FC<ConsentCheckboxFieldProps> = ({
         aria-describedby="consent-error"
         checked={checked}
         onChange={onChange}
-        className="mt-1 w-4 h-4 rounded focus:ring-2"
-        style={{
-          accentColor: 'var(--theme-accent)',
-        }}
+        className="ui-checkbox"
       />
-      <label htmlFor={id} className="text-sm" style={{ color: 'var(--theme-text)' }}>
+      <label htmlFor={id} className="ui-label">
         I consent to being contacted about my inquiry via email. View our{' '}
         <a 
           href={privacyPolicyUrl} 
           className="hover:underline" 
-          style={{ color: 'var(--theme-accent)' }}
+          style={{ color: 'var(--ui-primary-600)' }}
         >
           Privacy Policy
         </a>{' '}

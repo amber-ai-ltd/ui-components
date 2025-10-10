@@ -17,6 +17,7 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./theme": "./dist/theme/variables.css",
     "./dist/legal.css": "./dist/legal.css"
   },
   "files": [

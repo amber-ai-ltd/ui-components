@@ -1,0 +1,12 @@
+html.dark {
+  --ui-gray-50: var(--brand-dark-gray-50, #111827);
+  --ui-gray-100: var(--brand-dark-gray-100, #1f2937);
+  --ui-gray-200: var(--brand-dark-gray-200, #374151);
+  --ui-gray-300: var(--brand-dark-gray-300, #4b5563);
+  --ui-gray-400: var(--brand-dark-gray-400, #6b7280);
+  --ui-gray-500: var(--brand-dark-gray-500, #9ca3af);
+  --ui-gray-600: var(--brand-dark-gray-600, #d1d5db);
+  --ui-gray-700: var(--brand-dark-gray-700, #e5e7eb);
+  --ui-gray-800: var(--brand-dark-gray-800, #f3f4f6);
+  --ui-gray-900: var(--brand-dark-gray-900, #f9fafb);
+}
