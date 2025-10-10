@@ -17,12 +17,28 @@ export const getMoonIconStyles = (isDark: boolean, colors: any) => ({
   color: isDark ? colors.text : 'var(--ui-gray-400)'
 });
 
-export const getToggleSliderStyles = (isDark: boolean, colors: any, config: any) => ({
-  backgroundColor: colors.accent,
-  width: config.height,
-  height: config.height,
-  transform: isDark ? 'translateX(28.5px)' : 'translateX(-7.5px)'
-});
+const calculateSliderPosition = (config: any) => {
+  const TOGGLE_PADDING = 7.5;
+  const sliderSize = config.height;
+  const totalToggleWidth = config.width;
+  
+  const sunIconPosition = -(TOGGLE_PADDING / 2);
+  const moonIconPosition = totalToggleWidth - sliderSize - (TOGGLE_PADDING / 2);
+  
+  return { sunIconPosition, moonIconPosition };
+};
+
+export const getToggleSliderStyles = (isDark: boolean, colors: any, config: any) => {
+  const { sunIconPosition, moonIconPosition } = calculateSliderPosition(config);
+  const currentPosition = isDark ? moonIconPosition : sunIconPosition;
+  
+  return {
+    backgroundColor: colors.accent,
+    width: config.height,
+    height: config.height,
+    transform: `translateX(${currentPosition}px)`
+  };
+};
 
 export const getAriaLabel = (isDark: boolean) => 
   isDark ? 'Switch to light mode' : 'Switch to dark mode';

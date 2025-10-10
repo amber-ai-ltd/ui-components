@@ -6,6 +6,7 @@ interface TextInputFieldProps {
   name: string;
   label: string;
   type?: 'text' | 'email';
+  autoComplete?: string;
   required?: boolean;
   value: string;
   placeholder?: string;
@@ -21,6 +22,7 @@ export const TextInputField: React.FC<TextInputFieldProps> = ({
   name,
   label,
   type = 'text',
+  autoComplete,
   required = false,
   value,
   placeholder,
@@ -45,6 +47,7 @@ export const TextInputField: React.FC<TextInputFieldProps> = ({
         type={type}
         id={id}
         name={name}
+        autoComplete={autoComplete}
         required={required}
         aria-required={required}
         aria-describedby={showError ? errorId : undefined}

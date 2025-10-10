@@ -10,6 +10,7 @@ interface SelectFieldProps {
   id: string;
   name: string;
   label: string;
+  autoComplete?: string;
   required?: boolean;
   value: string;
   options: readonly SelectOption[];
@@ -21,6 +22,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   id,
   name,
   label,
+  autoComplete,
   required = false,
   value,
   options,
@@ -38,6 +40,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
       <select
         id={id}
         name={name}
+        autoComplete={autoComplete}
         required={required}
         value={value}
         onChange={onChange}

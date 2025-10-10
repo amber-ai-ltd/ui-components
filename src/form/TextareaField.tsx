@@ -5,6 +5,7 @@ interface TextareaFieldProps {
   id: string;
   name: string;
   label: string;
+  autoComplete?: string;
   required?: boolean;
   rows?: number;
   value: string;
@@ -19,6 +20,7 @@ export const TextareaField: React.FC<TextareaFieldProps> = ({
   id,
   name,
   label,
+  autoComplete,
   required = false,
   rows = 6,
   value,
@@ -42,6 +44,7 @@ export const TextareaField: React.FC<TextareaFieldProps> = ({
       <textarea
         id={id}
         name={name}
+        autoComplete={autoComplete}
         required={required}
         rows={rows}
         aria-required={required}
